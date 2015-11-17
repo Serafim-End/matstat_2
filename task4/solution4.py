@@ -5,6 +5,7 @@ from math import sqrt
 
 import matplotlib.pyplot as plt
 
+
 def get_data():
     x_numbs = []
     y_numbs = []
@@ -79,7 +80,7 @@ def spirmen():
 
 def draw_dots(x_numbs, y_numbs):
     plt.figure(1)
-    plt.title('Диаграмма рассеивания')
+    plt.title('Scatterplot')
     plt.plot(x_numbs, y_numbs, 'ro')
     plt.show()
 
