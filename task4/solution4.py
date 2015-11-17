@@ -1,6 +1,9 @@
 # coding: utf-8
-from math import sqrt
+
 import re
+from math import sqrt
+
+import matplotlib.pyplot as plt
 
 def get_data():
     x_numbs = []
@@ -74,27 +77,39 @@ def spirmen():
     return 1 - float(6 * sum(dsquare)) / (len(x_numbs) * ((len(x_numbs) ** 2) - 1))
 
 
+def draw_dots(x_numbs, y_numbs):
+    plt.figure(1)
+    plt.title('Диаграмма рассеивания')
+    plt.plot(x_numbs, y_numbs, 'ro')
+    plt.show()
+
+
 def t_statistics():
     x_numbs, y_numbs = get_data()
+    draw_dots(x_numbs, y_numbs)
     pirson_value = pirson()
+    print 'значение корреляции Пирсона: {}'.format(pirson_value)
     spirmen_value = spirmen()
+    print 'значение корреляции Спирмена: {}'.format(spirmen_value)
     tkr1 = t_kr(pirson_value, len(x_numbs))
+    print 'критическое значение Пирсона: {}'.format(tkr1)
     tkr2 = t_kr(spirmen_value, len(x_numbs))
+    print 'критическое значение Спирмена: {}'.format(tkr2)
 
     tstable = 2.021
     if -tstable < tkr1 < tstable:
-        print 'H0 верна с ошибкой первого рода (Ковариация Пирсона)'
+        print 'H0 верна с ошибкой первого рода (Корреляция Пирсона)'
     else:
-        print 'H0 отвергается (Ковариация Пирсона)'
+        print 'H0 отвергается (Корреляция Пирсона)'
 
     if -tstable < tkr2 < tstable:
-        print 'H0 верна с ошибкой первого рода(Ковариация Спирмена)'
+        print 'H0 верна с ошибкой первого рода(Корреляция Спирмена)'
     else:
-        print 'H0 отвергается (Ковариация Пирсона)'
+        print 'H0 отвергается (Корреляция Пирсона)'
 
 
 def t_kr(value, count):
-    return float(abs(value) * sqrt(count - 1)) / sqrt(1 - (value ** 2))
+    return float(abs(value) * sqrt(count - 2)) / sqrt(1 - (value ** 2))
 
 if __name__ == '__main__':
     t_statistics()
