@@ -1,5 +1,3 @@
-__author__ = 'nikita'
-
 import random
 import math
 import numpy as np
@@ -14,13 +12,13 @@ def solution1(a, b, test_number=100000, draw=False):
     function_array = []
     x_array = []
 
-    file2_a = open("test2_a.txt", 'r+')
+    # file2_a = open("test2_a.txt", 'r+')
     for i in xrange(test_number):
         x = random.uniform(a, b)
         function_array.append(f(x))
         x_array.append(x)
-        print >> file2_a, function_array[i]
-    file2_a.close()
+        # print >> file2_a, function_array[i]
+    # file2_a.close()
 
     if draw:
         draw_graph(f, range(a, b), x_coordinates=x_array, y_coordinates=function_array)

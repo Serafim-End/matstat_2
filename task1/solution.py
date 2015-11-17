@@ -1,20 +1,13 @@
-__author__ = 'nikita'
 import random
 import math
 import matplotlib.pyplot as plt
 
+__author__ = 'nikita'
 
-# def distribution_f(x):
-#     if x <= 0:
-#         return 0
-#     elif x >= 1:
-#         return 1
-#     else:
-#         return float(1 - math.exp(-x)) / (1 - math.exp(-1))
-#
 
 def distribution_func(y):
-    return - math.log(1 - y * (1 - math.exp(-1)))
+    # return - math.log(1 - y * (1 - math.exp(-1)))
+    return math.log(math.log(1 / (1 - y)) / math.log(3)) / math.log(3)
 
 
 def generate_distribution_array(test_numbers=100):
@@ -37,7 +30,7 @@ def max_y_value(random_numbers):
 
 def solution_a(test_one=100, test_two=1000, draw_dots=False):
     random_numbers = generate_distribution_array(test_numbers=test_one)
-    write_values('test_a.txt', random_numbers)
+    # write_values('test_a.txt', random_numbers)
 
     plt.figure(1)
     plt.title("number of tests: 100")
@@ -50,12 +43,12 @@ def solution_a(test_one=100, test_two=1000, draw_dots=False):
         plt.plot(random_numbers, random_numbers, 'ro')
 
     random_numbers_2 = generate_distribution_array(test_numbers=test_two)
-    write_values('test_a1.txt', random_numbers_2)
+    # write_values('test_a1.txt', random_numbers_2)
 
     plt.figure(2)
     plt.title("number of tests: 1000")
     plt.hist(random_numbers_2, 10)
-    plt.axis([0, 1, 0, 150])
+    plt.axis([0, 1, 0, 500 * max(random_numbers_2)])
 
     if draw_dots:
         plt.figure(4)
@@ -70,7 +63,7 @@ def solution_b(test_number=1000, draw_dots=False):
     for i in xrange(test_number):
         distribution_array.append(sum(generate_distribution_array(test_numbers=30)))
         print i, distribution_array[i]
-    write_values('test_b.txt', distribution_array)
+    # write_values('test_b.txt', distribution_array)
 
     if draw_dots:
         plt.figure(1)
@@ -85,11 +78,5 @@ def solution_b(test_number=1000, draw_dots=False):
     plt.show()
 
 if __name__ == '__main__':
-    # solution_a()
-    solution_b(draw_dots=True)
-
-
-
-
-    # solution_b1()
-    # solution_a(draw_dots=True)
+    solution_a()
+    # solution_b(draw_dots=True)
