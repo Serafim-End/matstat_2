@@ -75,7 +75,8 @@ def spirmen():
     dsquare = []
     for i in xrange(len(x_true)):
         dsquare.append((x_true[i] - y_true[i]) ** 2)
-    return 1 - float(6 * sum(dsquare)) / (len(x_numbs) * ((len(x_numbs) ** 2) - 1))
+    return 1 - float(6 * sum(dsquare)) /\
+               (len(x_numbs) * ((len(x_numbs) ** 2) - 1))
 
 
 def draw_dots(x_numbs, y_numbs):
