@@ -115,5 +115,5 @@ def t_kr(value, count):
 
 if __name__ == '__main__':
     t_statistics()
-    # print pirson()
-    # print spirmen()
+    print 'pirson value: {}'.format(pirson())
+    print 'spirmen value: {}'.format(spirmen())

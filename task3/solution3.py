@@ -23,13 +23,13 @@ def distribution(count, teta=2., m=1.):
     return x_numbs
 
 
-def hypothesis(value=3, distribution_n=8,  test_numb=10000, t_kr=2.365):
-    '''
+def hypothesis(value=3, distribution_n=8, test_numb=10000, t_kr=2.365):
+    """
     check whether m (lambda) equals value
     H0: m == 3
     Ha: m != 3
     :return:
-    '''
+    """
     hypothesis_error_1 = 0
     for i in xrange(test_numb):
         x_numbs = distribution(distribution_n)
@@ -50,14 +50,14 @@ def hypothesis(value=3, distribution_n=8,  test_numb=10000, t_kr=2.365):
 
 
 def solution_part_b(distribution_n=8, test_numb=10000, t_kr=2.365):
-    '''
+    """
     Ha - m != ? get alternative hypothesis as true
     H0 - m == ?
     :param distribution_n:
     :param test_numb:
     :param t_kr:
     :return:
-    '''
+    """
     result = {'real_m': [], 'pos': []}
     teta = 2
     for i in xrange(9):
