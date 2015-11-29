@@ -99,12 +99,12 @@ def t_statistics():
     print 'критическое значение Спирмена: {}'.format(tkr2)
 
     tstable = 2.021
-    if -tstable < tkr1 < tstable:
+    if tkr1 < abs(tstable):
         print 'H0 верна с ошибкой первого рода (Корреляция Пирсона)'
     else:
         print 'H0 отвергается (Корреляция Пирсона)'
 
-    if -tstable < tkr2 < tstable:
+    if tkr2 < abs(tstable):
         print 'H0 верна с ошибкой первого рода(Корреляция Спирмена)'
     else:
         print 'H0 отвергается (Корреляция Пирсона)'
