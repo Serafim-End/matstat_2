@@ -25,7 +25,7 @@ def calc_average(x):
 
 def calc_dispersion(av, x):
     """
-    расчет выборочной дисперсии
+    расчет выборочной дисперсии (несмещенной)
     :param av:
     :param x:
     :return:
@@ -35,18 +35,18 @@ def calc_dispersion(av, x):
 
 def calc_student(x, nu):
     """
-    найти t статичтику
+    найти t статиcтику
     :param x:
     :param nu:
     :return:
     """
     qu = 1.895
-    t = float((calc_average(x) - nu) * math.sqrt(len(x))) /\
-        math.sqrt(calc_dispersion(calc_average(x), x))
+    t = (float(calc_average(x) - nu) /
+         (calc_dispersion(calc_average(x), x) / math.sqrt(len(x))))
     return qu <= abs(t)
 
 
-def find_probability(n, cnt, nu, check_nu):
+def find_probability(n, cnt, nu, check_nu, crit=3):
     """
     На уровне значимости 5% проверьте гипотезу о
     равенстве математического ожидания трём против двусторонней альтернативы
@@ -58,9 +58,10 @@ def find_probability(n, cnt, nu, check_nu):
     :return:
     """
     result = 0
+    crit += 0.5
     for i in xrange(n):
         gen_array = gen(cnt, nu, check_nu)
-        if calc_student(gen_array, check_nu):
+        if calc_student(gen_array, crit):
             result += 1
     return float(result) / n
 
@@ -81,7 +82,7 @@ def solve(n, cnt):
         values.append(nu)
         probabilities.append(find_probability(n, cnt, 3, nu))
         nu += 0.5
-
+    #
     plt.plot(values, probabilities)
     plt.show()
 
@@ -91,6 +92,13 @@ if __name__ == '__main__':
 
     print("N = 1000 T = 50 E = 1: " + str(find_probability(10000, 50, 1, 2)))
     solve(10000, 50)
+
+    # print("N = 1000 T = 50 E = 1: " + str(find_probability(10000, 50, 1, 2)))
+    # solve(10000, 50)
+    #
+    # print("N = 1000 T = 50 E = 1: " + str(find_probability(10000, 50, 1, 2)))
+    # solve(10000, 50)
+
 
 
 
