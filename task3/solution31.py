@@ -33,14 +33,14 @@ def calc_dispersion(av, x):
     return float(sum([(av - el) ** 2 for el in x])) / (len(x) - 1)
 
 
-def calc_student(x, nu):
+def calc_student(x, nu, cnt=8):
     """
     найти t статиcтику
     :param x:
     :param nu:
     :return:
     """
-    qu = 1.895
+    qu = 1.895 if cnt == 8 else 1.644
     t = (float(calc_average(x) - nu) /
          (calc_dispersion(calc_average(x), x) / math.sqrt(len(x))))
     return qu <= abs(t)
@@ -58,10 +58,9 @@ def find_probability(n, cnt, nu, check_nu, crit=3):
     :return:
     """
     result = 0
-    crit += 0.5
     for i in xrange(n):
         gen_array = gen(cnt, nu, check_nu)
-        if calc_student(gen_array, crit):
+        if calc_student(gen_array, crit, cnt):
             result += 1
     return float(result) / n
 
